@@ -1,0 +1,23 @@
+.itemdiv:nth-child(even) {
+    background-color: rgb(135,206,235);
+}
+.itemdiv:nth-child(odd){
+   background-color: rgb(74,170,165)
+}
+
+
+.itemdiv{
+  float:left;
+  /* padding: 20px; */
+  border: 2px solid black;
+  width:400px;
+  height:300px;
+}
+
+#message{
+  /* padding: 40px; */
+}
+.btn{
+    margin-left: 5px;
+    margin-right: 5px
+};

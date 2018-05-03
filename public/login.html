@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+	<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href="assets/css/style.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<title>Login | Inventory Depot</title>
+	</head>
+
+	<body>
+
+		<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+		<a class="navbar-brand"><strong>Inventory Depot</strong></a>
+		</div>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="home.html" type="button" class="btn navbar-btn btn-danger" id="navbar-link"> Home </a></li>
+				<li><a href="login.html" type="button" class=" btn navbar-btn btn-danger"id="navbar-link"> Login </a></li>
+				<li><a href="results.html" type="button"class=" btn navbar-btn btn-danger"id="navbar-link"> Search </a></li>
+				<li><a href="user.html" type="button" class=" btn navbar-btn btn-danger"id="navbar-link"> User </a></li>
+				</ul>
+	</div>
+	</nav>
+		<div class="container" id="main">
+			<div class="row">
+				<div class="col-lg-3" style="background-color:black; margin-left:435px">
+					<h1 style="text-align:center; color: gray">Login</h1>
+						<form class="form-inline">
+							<div class="form-group">
+								<div>
+								<label style="color:gray">Email</label><br>
+								<input type="text" name="name" class="form-control input-lg" id="IDemail">
+							<div>
+								<label style="color:gray">Password</label><br>
+								<input type="password"class="input-lg"id="IDpassword"></input>
+							</div>
+				</form>
+				<br>
+							<button type="submit" class="btn btn-danger btn-block" id="login">Submit</button>
+							<button type="submit" class="btn btn-danger btn-block" id="SignOut">Signout</button>
+				<br>
+				</div>
+			</div>
+		</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12" style= "text-align: center;
+			background-color:black; color:gray; width:100%;
+			position:fixed; left:0; bottom:0;
+			padding-top:25px; padding-bottom:25px">
+
+					Inventory Depot &copy; 2018
+				</div>
+		</div>
+
+	</div>
+<script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+<script src="./assets/js/login.js"></script>
+	<!-- <script src="assets/login.js"></script> -->
+	<script>
+	// Initialize Firebase
+	var config = {
+	  apiKey: "AIzaSyDThsSSmrM586vOqjUQPe1vThyIRIuaqwE",
+	  authDomain: "inventory-depot.firebaseapp.com",
+	  databaseURL: "https://inventory-depot.firebaseio.com",
+	  projectId: "inventory-depot",
+	  storageBucket: "inventory-depot.appspot.com",
+	  messagingSenderId: "621383880719"
+	};
+	firebase.initializeApp(config);
+	   //Getting the Email/Password and Signin button from the the inputs above.
+	   let signIn = document.getElementById('login');
+	   //Listening on thesignIn button click.
+	   signIn.addEventListener('click', (ev) => {
+	       let email = document.getElementById('IDemail').value;
+	       let password = document.getElementById('IDpassword').value;
+	       ev.preventDefault();
+	       console.log(email, password);
+	       firebase.auth().createUserWithEmailAndPassword(email, password)
+	           .then(user => {
+	               alert('You have Successfully Logged In!')
+	               //Handling the successful authentication.
+	               window.location = "results.html";
+	           }).catch(function (error) {
+	           //Handling the error showcasing. });
+	               alert('Login unsucessful! Please try again!')
+	       }, false);
+	   });
+	document.getElementById('SignOut','click',function(){
+		firebase.auth().signOut().then(function() {
+	 console.log("Logged out!");
+	 window.location = "home.html";
+ }, function(error) {
+	 console.log(error.code);
+	 console.log(error.message);
+ });
+	})
+	</script>
+</body>
+</html>
